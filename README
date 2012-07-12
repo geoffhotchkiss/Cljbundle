@@ -1,0 +1,11 @@
+# cljbundle
+
+This is my project to learn Clojure and solve a problem I have. The problem is that I have no good way to keep track of the Indie Game/Music bundles I have purchased. My current solution is to search through my emails for links to them. Part of the problem is that not all of the games are on Steam or Desura. Even if they are, odds are that I have multiple copies of them. Plus the Indie Music bundles don't appear on either Steam or Desura. 
+
+## Usage
+
+Right now, you run:
+
+	lein trampoline run project.clj
+
+Follow the instructions on screen. You can press "enter" to quit out. Bundle files will be created in the current directory. It's nothing fancy yet. 
