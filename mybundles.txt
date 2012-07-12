@@ -1,1 +1,0 @@
-["google.com" "humblebundle.com" "indiegala.com"]

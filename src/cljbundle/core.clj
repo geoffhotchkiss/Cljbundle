@@ -32,28 +32,16 @@ Action: ")
 
 (defn parse-input [input]
   (case (trim input)
-    ""  0
-    "quit" 0
-    "1" 1
-    "2" 2
-    "3" 3
-    "4" 4
-    -1))
+    (or "" "quit") 0
+    "1" (add-to-bundle-list (prompt "What would you like to add: "))
+    "2" (print-bundle-list)
+    "3" (write-bundle-list (prompt "What file to write to: "))
+    "4" (read-bundle-list (prompt "What file to read from: "))
+    (println "I couldn't understand you")))
 
 (defn -main [& args]
   (loop [input (prompt user-options)]
     (let [action (parse-input input)]
-      (if (= action 0) 
-      	(println "Bye bye!")
-      	(do 
-	        (case action
-	          1 (add-to-bundle-list (prompt "What would you like to add: "))
-	          2 (print-bundle-list)
-	          3 (write-bundle-list (prompt "What file to write to: "))
-	          4 (read-bundle-list (prompt "What file to read from: "))
-	          -1 (println "I couldn't understand you"))
-	        (recur (prompt user-options)))))))
-       
-    
-    
-
+      (when-not (= action 0)
+        (recur (prompt user-options)))))
+  (println "Bye bye"))
