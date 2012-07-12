@@ -4,7 +4,6 @@ Thoughts
 Things I don't like:
 --------------------
 
-* Maybe I should dispatch from within parse-input instead of leaving it inside of -main
 * I don't like that ('use clojure.string) thing at the top. There's probably a way to include that in project.clj with Leiningen
 * Not sure if this is the best way to store my list of urls... mutable state and all
 * I wonder if there's a better way of dealing with serialization than spit and slurp
