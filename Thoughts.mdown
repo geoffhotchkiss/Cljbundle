@@ -10,6 +10,7 @@ Things I don't like:
 * Not sure if this is the best way to store my list of urls... mutable state and all
 * I wonder if there's a better way of dealing with serialization than spit and slurp
 * humblebunldle appears to change their layout at least in humble bundle 4 and the frozenbyte bundle. This means that I need a better way to parse these pages than just the hard coded values. I guess that's a good thing. 
+* enlive might be the way to go
 
 Things to do:
 -------------
