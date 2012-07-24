@@ -1,0 +1,17 @@
+(def body (page 3))
+(def wrapper (body 19))
+(def main (wrapper 2))
+(def papers-content (main 5))
+(def whitebox (papers-content 6))
+(def whitecontent-nopadding (whitebox 5))
+(def shrinkwrapper-expanded (whitecontent-nopadding 2))
+(def shrinksizer (shrinkwrapper-expanded 2))
+(def regular-download-list (shrinksizer 4))
+
+Finally the good stuff. 
+(def aquaria-list (regular-download-list 8))
+(def gish-list (regular-download-list 10))
+(def lugaru-list (regular-download-list 12))
+(def penumbraoverture-list (regular-download-list 14))
+(def samorost2-list (regular-download-list 16))
+(def worldofgoo-list (regular-download-list 18))

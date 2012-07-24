@@ -1,6 +1,8 @@
 Thoughts
 ========
 
+I parsing guide is interesting. Indie bundles 1 and 2 look similar, I can only hope the other ones are also similar. There must be a better way to parse this. I wonder if I can figure out how to select my id or class
+
 Things I don't like:
 --------------------
 

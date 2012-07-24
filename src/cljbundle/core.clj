@@ -1,6 +1,7 @@
 (ns cljbundle.core)
 
 (use 'clojure.string)
+(use 'pl.danieljanus.tagsoup)
 
 (def bundle-list [])
 
@@ -27,6 +28,7 @@
 2) Print bundle list
 3) Write bundle list
 4) Read bundle list
+5) Parse website
 
 Action: ")
 
@@ -37,6 +39,7 @@ Action: ")
     "2" (print-bundle-list)
     "3" (write-bundle-list (prompt "What file to write to: "))
     "4" (read-bundle-list (prompt "What file to read from: "))
+    "5" (spit "parsedpage.txt" (parse (prompt "What url do you want to parse: ")))
     (println "I couldn't understand you")))
 
 (defn -main [& args]
