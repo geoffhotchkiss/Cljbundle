@@ -1,11 +1,20 @@
-(ns cljbundle.core)
-
-(use 'clojure.string)
-(use 'pl.danieljanus.tagsoup)
+(ns cljbundle.core
+  (use clojure.string)
+  (use pl.danieljanus.tagsoup)
+  (use clojure.pprint)
+  (:require [net.cgrand.enlive-html :as html]))
 
 (def bundle-list [])
 
 (def parsed-page [])
+
+(def *hb1-url* "http://www.humblebundle.com/downloads?key=PP3xzfsqxX")
+
+(defn fetch-url [url]
+  (html/html-resource (java.net.URL. url)))
+
+(defn hb-games []
+  (apply list (html/select (fetch-url *hb1-url*) [:div.download :div.flexbtn :a.a])))
 
 (defn add-to-bundle-list [item]
   (def bundle-list (conj bundle-list item)))
