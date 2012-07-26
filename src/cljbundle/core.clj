@@ -1,13 +1,13 @@
-(ns cljbundle.core
-  (use clojure.string)
-  (use pl.danieljanus.tagsoup)
-  (use clojure.pprint)
-  (:require [net.cgrand.enlive-html :as html]))
+(ns cljbundle.core)
+
+(use 'clojure.string)
+(use 'pl.danieljanus.tagsoup)
 
 (def bundle-list [])
 
 (def parsed-page [])
 
+<<<<<<< HEAD
 (def *hb1-url* "")
 
 (defn fetch-url [url]
@@ -16,6 +16,8 @@
 (defn hb-games []
   (apply list (html/select (fetch-url *hb1-url*) [:div.download :div.flexbtn :a.a])))
 
+=======
+>>>>>>> parent of 7651d0b... Added support for enlive :-D
 (defn add-to-bundle-list [item]
   (def bundle-list (conj bundle-list item)))
 
