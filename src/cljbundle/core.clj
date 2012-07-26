@@ -8,7 +8,7 @@
 
 (def parsed-page [])
 
-(def *hb1-url* "http://www.humblebundle.com/downloads?key=PP3xzfsqxX")
+(def *hb1-url* "")
 
 (defn fetch-url [url]
   (html/html-resource (java.net.URL. url)))
