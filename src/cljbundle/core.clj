@@ -13,8 +13,8 @@
 (defn fetch-url [url]
   (html/html-resource (java.net.URL. url)))
 
-(defn hb-games []
-  (apply list (html/select (fetch-url *hb1-url*) [:div.download :div.flexbtn :a.a])))
+(defn hb-games [url]
+  (apply list (html/select (fetch-url url) [:div.download :div.flexbtn :a.a])))
 
 (defn add-to-bundle-list [item]
   (def bundle-list (conj bundle-list item)))
@@ -28,27 +28,9 @@
 (defn read-bundle-list [file]
   (def bundle-list (read-string (slurp file))))
 
-(defn parse-humble-bundle [page]
-  (def body (page 3))
-  (def wrapper (body 19))
-  (def main (wrapper 2))
-  (def papers-content (main 5))
-  (def whitebox (papers-content 6))
-  (def whitecontent-nopadding (whitebox 5))
-  (def shrinkwrapper-expanded (whitecontent-nopadding 2))
-  (def shrinksizer (shrinkwrapper-expanded 2))
-  (def regular-download-list (shrinksizer 4))
-  (def aquaria-list (regular-download-list 8))
-  (def gish-list (regular-download-list 10))
-  (def lugaru-list (regular-download-list 12))
-  (def penumbraoverture-list (regular-download-list 14))
-  (def samorost2-list (regular-download-list 16))
-  (def worldofgoo-list (regular-download-list 18))
-  )
-
 (defn parse-page [url]
   (def parsed-page (parse url))
-  (parse-humble-bundle parsed-page)
+  (def lugaru-list (hb-games url))
   (println lugaru-list))
 
 (defn write-parsed-page [page]
