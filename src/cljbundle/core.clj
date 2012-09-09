@@ -51,6 +51,9 @@
 (defn write-parsed-page [page]
   (spit "parsedpage.txt" page))
 
+(defn parse-all-urls []
+  (keep-indexed (fn [idx itm] (prn (inc idx) (get-game-titles itm))) bundle-urls))
+
 (defn prompt [text]
   (print text)
   (flush)
@@ -64,6 +67,7 @@
 4) Read bundle list
 5) Parse page
 6) Write parsed website
+7) Parse all urls
 
 Action: ")
 
@@ -76,6 +80,7 @@ Action: ")
     "4" (read-bundle-list (prompt "What file to read from: "))
     "5" (parse-page (prompt "What url do you want to parse: "))
     "6" (write-parsed-page parsed-page)
+    "7" (parse-all-urls)
     (println "I couldn't understand you")))
 
 (defn -main [& args]
