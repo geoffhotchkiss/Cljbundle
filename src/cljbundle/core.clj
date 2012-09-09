@@ -4,7 +4,6 @@
   (use clojure.pprint)
   (:require [net.cgrand.enlive-html :as html]))
 
-(def bundle-list [])
 
 (def parsed-page [])
 
@@ -13,25 +12,39 @@
 (defn fetch-url [url]
   (html/html-resource (java.net.URL. url)))
 
+(defn make-list [thing]
+  (apply list thing))
+
+(defn get-games [url]
+  (html/select (fetch-url url) [:div.download :div.flexbtn :a.a]))
+
+(defn get-games-and-titles [url]
+  (html/select (fetch-url url) [:div.row]))
+
+; Returns a list containing the titles of the games
+(defn get-game-titles [url] 
+  (let [game-titles (make-list (html/select (fetch-url url) [:div.title :a]))
+        game-titles (keep (fn [itm] (:content itm)) game-titles)]
+        (flatten game-titles)))
+
 (defn hb-games [url]
-  (apply list (html/select (fetch-url url) [:div.download :div.flexbtn :a.a])))
+  (apply list (get-game-titles url)))
 
 (defn add-to-bundle-list [item]
   (def bundle-list (conj bundle-list item)))
 
 (defn print-bundle-list []
-  (println bundle-list))
+  (println "This doesn't do shit!"))
 
 (defn write-bundle-list [file]
-  (spit file bundle-list))
+  (spit file bundle-list)) 
 
 (defn read-bundle-list [file]
   (def bundle-list (read-string (slurp file))))
 
 (defn parse-page [url]
-  (def parsed-page (parse url))
-  (def lugaru-list (hb-games url))
-  (println lugaru-list))
+  (let [games (hb-games url)]
+    (keep-indexed (fn [idx itm] (println idx ":" itm "\n")) games)))
 
 (defn write-parsed-page [page]
   (spit "parsedpage.txt" page))
