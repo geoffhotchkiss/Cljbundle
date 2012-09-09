@@ -9,6 +9,8 @@
 
 (def *hb1-url* "")
 
+(def bundle-urls (map trim (split (slurp "bundleurls.csv") #",")))
+
 (defn fetch-url [url]
   (html/html-resource (java.net.URL. url)))
 
