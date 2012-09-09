@@ -4,6 +4,8 @@ This is my project to learn Clojure and solve a problem I have. The problem is t
 
 ## Usage
 
+Assumes you have a `bundleurls.csv` which contains the urls for your Humble Bundles.
+
 Right now, you run:
 
 	lein trampoline run project.clj
