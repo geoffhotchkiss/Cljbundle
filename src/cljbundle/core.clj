@@ -14,6 +14,8 @@
 (defn fetch-url [url]
   (html/html-resource (java.net.URL. url)))
 
+(def bundle-pages (map fetch-url bundle-urls))
+
 (defn make-list [thing]
   (apply list thing))
 
@@ -24,10 +26,31 @@
   (html/select (fetch-url url) [:div.row]))
 
 ; Returns a list containing the titles of the games
-(defn get-game-titles [url] 
-  (let [game-titles (make-list (html/select (fetch-url url) [:div.title :a]))
+(defn get-game-titles [page] 
+  (let [game-titles (make-list (html/select page [:div.title :a]))
         game-titles (keep (fn [itm] (:content itm)) game-titles)]
         (flatten game-titles)))
+
+(defn get-mac-download-links [page]
+  (let [download-links (make-list (html/select page [:div.mac :a.a]))]
+    download-links))
+
+(defn get-windows-download-links [page]
+  (let [download-links (make-list (html/select page [:div.windows :a.a]))]
+    download-links))
+
+(defn get-bt-download-links [links]
+  (map (fn [link] (:data-bt (:attrs link))) links))
+
+(defn get-direct-download-links [links]
+  (map (fn [link] (:data-web (:attrs link))) links))
+
+(defn get-mac-downloads [url]
+  (let [page (fetch-url url)
+        game-titles (get-game-titles page)
+        download-links (get-mac-download-links page)
+        direct-links (get-direct-download-links download-links)]
+    (map vector game-titles direct-links)))
 
 (defn hb-games [url]
   (apply list (get-game-titles url)))
