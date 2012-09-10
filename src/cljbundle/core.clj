@@ -50,7 +50,13 @@
         game-titles (get-game-titles page)
         download-links (get-mac-download-links page)
         direct-links (get-direct-download-links download-links)]
-    (map vector game-titles direct-links)))
+    (println)
+    (println "*******************")
+    (doseq [link (map vector game-titles direct-links)]
+      (print (nth link 0))
+      (print ": ")
+      (println (nth link 1)))
+    (println "*******************")))
 
 (defn hb-games [url]
   (apply list (get-game-titles url)))
@@ -91,6 +97,7 @@
 5) Parse page
 6) Write parsed website
 7) Parse all urls
+8) Get mac download links
 
 Action: ")
 
@@ -104,6 +111,7 @@ Action: ")
     "5" (parse-page (prompt "What url do you want to parse: "))
     "6" (write-parsed-page parsed-page)
     "7" (parse-all-urls)
+    "8" (get-mac-downloads (prompt "What url: "))
     (println "I couldn't understand you")))
 
 (defn -main [& args]
